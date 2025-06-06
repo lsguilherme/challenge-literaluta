@@ -14,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -67,7 +68,12 @@ public class LivroService {
     }
 
     public void buscarLivrosRegistrados() {
-        System.out.println("Listando livros registrados");
+        List<Livro> livros = livroRepository.findAll();
+        if (livros.isEmpty()){
+            System.out.println("Nenhum livro cadastrado.");
+            return;
+        }
+        livros.forEach(this::imprimirLivro);
     }
 
     public void buscarLivroPorIdioma() {
