@@ -25,6 +25,6 @@ public enum Idioma {
                 return idioma;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Idioma inválido: " + value);
     }
 }

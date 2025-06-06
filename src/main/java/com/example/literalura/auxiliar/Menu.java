@@ -51,7 +51,15 @@ public class Menu {
                     autorService.buscarAutoresVivosEmUmAno();
                     break;
                 case 5:
-                    livroService.buscarLivroPorIdioma();
+                    System.out.println("""
+                            Insira o livro que quer realizar a busca:
+                            en - ingles
+                            es - espanhol
+                            pt - portugues
+                            fr - frances
+                            """);
+                    String idioma = sc.nextLine();
+                    livroService.buscarLivroPorIdioma(idioma);
                     break;
             }
         }

@@ -5,6 +5,7 @@ import com.example.literalura.dto.AutorDto;
 import com.example.literalura.dto.LivroDto;
 import com.example.literalura.dto.RequestDto;
 import com.example.literalura.model.Autor;
+import com.example.literalura.model.Idioma;
 import com.example.literalura.model.Livro;
 import com.example.literalura.repository.AutorRepository;
 import com.example.literalura.repository.LivroRepository;
@@ -76,8 +77,20 @@ public class LivroService {
         livros.forEach(this::imprimirLivro);
     }
 
-    public void buscarLivroPorIdioma() {
-        System.out.println("Listando livros em um determinado idioma");
+    public void buscarLivroPorIdioma(String codigoIdioma) {
+        try {
+            Idioma idioma = Idioma.fromValue(codigoIdioma.toLowerCase());
+            List<Livro> livros = livroRepository.findByIdioma(idioma);
+
+            if (livros.isEmpty()) {
+                System.out.println("Nenhum livro encontrado para o idioma: " + codigoIdioma);
+            } else {
+                livros.forEach(this::imprimirLivro);
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Idioma inválido: " + codigoIdioma);
+        }
     }
 
     private Livro converterJsonParaLivro(String json) {
