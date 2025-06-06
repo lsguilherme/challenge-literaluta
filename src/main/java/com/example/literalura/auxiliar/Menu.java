@@ -1,11 +1,24 @@
 package com.example.literalura.auxiliar;
 
+import com.example.literalura.service.AutorService;
+import com.example.literalura.service.LivroService;
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class Menu {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static void exibeMenu(){
+    private final LivroService livroService;
+    private final AutorService autorService;
+
+    public Menu(LivroService livroService, AutorService autorService) {
+        this.livroService = livroService;
+        this.autorService = autorService;
+    }
+
+    public void exibeMenu(){
         var opcao = -1;
         while (opcao != 0){
             var menu = """
@@ -23,11 +36,11 @@ public class Menu {
             opcao = Integer.parseInt(sc.nextLine());
 
             switch (opcao){
-                case 1 -> System.out.println("Buscando livro");
-                case 2 -> System.out.println("Listando livros registrados");
-                case 3 -> System.out.println("Listando autores registrados");
-                case 4 -> System.out.println("Listando autores vivos em um determinado ano");
-                case 5 -> System.out.println("Listando livros em um determinado idioma");
+                case 1 -> livroService.buscarLivroNaApi();
+                case 2 -> livroService.buscarLivrosRegistrados();
+                case 3 -> autorService.buscarAutoresRegistrados();
+                case 4 -> autorService.buscarAutoresVivosEmUmAno();
+                case 5 -> livroService.buscarLivroPorIdioma();
             }
         }
 

@@ -1,6 +1,6 @@
 package com.example.literalura;
 
-import config.HttpService;
+import com.example.literalura.auxiliar.Menu;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +12,14 @@ public class LiteraluraApplication implements CommandLineRunner {
 		SpringApplication.run(LiteraluraApplication.class, args);
 	}
 
+	private final Menu menu;
+
+	public LiteraluraApplication(Menu menu) {
+		this.menu = menu;
+	}
+
 	@Override
 	public void run(String... args) throws Exception {
-		var request = HttpService.request("https://gutendex.com/books/");
-		System.out.println(request);
+		menu.exibeMenu();
 	}
 }
