@@ -1,24 +1,30 @@
 package com.example.literalura.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Idioma {
-    ES("es","Espanhol"),
-    EN("en","Inglês"),
-    FR("fr","Francês"),
-    PT("pt","Português");
+    ES("es"),
+    EN("en"),
+    FR("fr"),
+    PT("pt");
 
     private final String codigoGutendex;
-    private final String idiomaEmTexto;
 
-    Idioma(String codigoGutendex, String idiomaEmTexto) {
+    Idioma(String codigoGutendex) {
         this.codigoGutendex = codigoGutendex;
-        this.idiomaEmTexto = idiomaEmTexto;
     }
 
     public String getCodigoGutendex() {
         return codigoGutendex;
     }
 
-    public String getIdiomaEmTexto() {
-        return idiomaEmTexto;
+    @JsonCreator
+    public static Idioma fromValue(String value){
+        for(Idioma idioma : Idioma.values()){
+            if(idioma.getCodigoGutendex().equalsIgnoreCase(value)){
+                return idioma;
+            }
+        }
+        return null;
     }
 }

@@ -36,11 +36,23 @@ public class Menu {
             opcao = Integer.parseInt(sc.nextLine());
 
             switch (opcao){
-                case 1 -> livroService.buscarLivroNaApi();
-                case 2 -> livroService.buscarLivrosRegistrados();
-                case 3 -> autorService.buscarAutoresRegistrados();
-                case 4 -> autorService.buscarAutoresVivosEmUmAno();
-                case 5 -> livroService.buscarLivroPorIdioma();
+                case 1:
+                    System.out.println("Digite o livro que você quer buscar:");
+                    String titulo = sc.nextLine();
+                    livroService.cadastrarLivroNoBancoPorTitulo(titulo);
+                    break;
+                case 2:
+                    livroService.buscarLivrosRegistrados();
+                    break;
+                case 3:
+                    autorService.buscarAutoresRegistrados();
+                    break;
+                case 4:
+                    autorService.buscarAutoresVivosEmUmAno();
+                    break;
+                case 5:
+                    livroService.buscarLivroPorIdioma();
+                    break;
             }
         }
 
