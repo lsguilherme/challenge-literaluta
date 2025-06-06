@@ -1,4 +1,4 @@
-package config;
+package com.example.literalura.config;
 
 import java.io.IOException;
 import java.net.URI;
