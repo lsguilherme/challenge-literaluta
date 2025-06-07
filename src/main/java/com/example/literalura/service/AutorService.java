@@ -24,8 +24,10 @@ public class AutorService {
         autores.forEach(this::imprimirAutor);
     }
 
-    public void buscarAutoresVivosEmUmAno() {
-        System.out.println("Listando autores vivos em um determinado ano");
+    @Transactional
+    public void buscarAutoresVivosEmUmAno(Integer ano) {
+        List<Autor> autores = autorRepository.autoresVivos(ano);
+        autores.forEach(this::imprimirAutor);
     }
 
     private void imprimirAutor(Autor autor){

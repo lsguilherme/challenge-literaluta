@@ -48,7 +48,9 @@ public class Menu {
                     autorService.buscarAutoresRegistrados();
                     break;
                 case 4:
-                    autorService.buscarAutoresVivosEmUmAno();
+                    System.out.println("Insira o ano que deseja pesquisar");
+                    Integer ano = Integer.parseInt(sc.nextLine());
+                    autorService.buscarAutoresVivosEmUmAno(ano);
                     break;
                 case 5:
                     System.out.println("""
